@@ -39,8 +39,7 @@ resource "aws_instance" "blog" {
   instance_type = var.instance_type
 
   vpc_security_group_ids = [module.blog_sg.security_group_id]
-
-  subnet_id = module.blog_vpc.public_subnets[0]
+  subnet_id             = module.blog_vpc.public_subnets[0]
 
   tags = {
     Name = "Learning Terraform"
@@ -59,19 +58,19 @@ module "alb" {
   subnets         = module.blog_vpc.public_subnets
   security_groups = [module.blog_sg.security_group_id]
 
- target_groups = [
+target_groups = [
     {
-   
-       name_prefix      = "blog"
-       protocol         = "HTTP"
-       target_type      = "instance"
-       port             = 80
-         targets = {
-          my_target = {
-           target_id = aws_instance.blog.id
-           port      = 80
-          } 
-       }  
+      name_prefix = "blog"
+      protocol    = "HTTP"
+      target_type = "instance"
+      port        = 80
+
+      targets = {
+        my_target = {
+          target_id = aws_instance.blog.id
+          port      = 80
+        }
+      }
     }
   ]
   
