@@ -49,6 +49,7 @@ resource "aws_instance" "blog" {
 
 module "alb" {
   source = "terraform-aws-modules/alb/aws"
+  version = "~> 6.0"
 
   name    = "blog-alb"
 
@@ -61,7 +62,7 @@ module "alb" {
 target_groups = [
     {
    
-      name_prefix      = "blog-"
+      name_prefix      = "blog"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
