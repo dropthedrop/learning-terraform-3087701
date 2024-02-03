@@ -46,7 +46,7 @@ resource "aws_instance" "blog" {
   }
 }
 
-module "alb" {
+ module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name             = "blog"
@@ -62,7 +62,8 @@ module "alb" {
       target_type      = "instance"
       target_id        = aws_instance.blog.id
     }
-
+  } 
+  }
   # Security Group
   security_group_ingress_rules = {
     all_http = {
