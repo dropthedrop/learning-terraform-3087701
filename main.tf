@@ -51,23 +51,15 @@ module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "blog-alb"
+
+  load_balance_type = "application"
+
   vpc_id  = module.blog_vpc.vpc_id
   subnets = module.blog_vpc.public_subnets
   security groups = module.blog_sg.security_group_id
 
-  access_logs = {
-    bucket = "my-alb-logs"
-  }
-
-  http_tcp_listyeners = [
+target_groups = [
     {
-      port = 80
-      protocol = "HTTP"
-      target_group_index = 0
-    }
-  ]
-
-  target_groups = {
    
       name_prefix      = "blog-"
       protocol         = "HTTP"
@@ -78,8 +70,19 @@ module "alb" {
          target_id = aws_instance.blog.id
          port = 80
         } 
+      }  
     }
-  }
+  ]
+
+  http_tcp_listeners = [
+    {
+      port = 80
+      protocol = "HTTP"
+      target_group_index = 0
+    }
+  ]
+
+  
 
   tags = {
     Environment = "dev"
