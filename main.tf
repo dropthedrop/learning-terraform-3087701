@@ -83,26 +83,16 @@ module "alb" {
     bucket = "my-alb-logs"
   }
 
-  listeners = {
-    ex-http-https-redirect = {
-      port     = 80
+  http_tcp_listyeners = [
+    {
+      port = 80
       protocol = "HTTP"
-      redirect = {
-        port        = "443"
-        protocol    = "HTTPS"
-        status_code = "HTTP_301"
-      }
+      target_group_index = 0
     }
-    
-
-      forward = {
-        target_group_key = "ex-instance"
-      }
-    }
-  }
+  ]
 
   target_groups = {
-    ex-instance = {
+   
       name_prefix      = "blog-"
       protocol         = "HTTP"
       port             = 80
@@ -112,13 +102,11 @@ module "alb" {
          target_id = aws_instance.blog.id
          port = 80
         } 
-      }
     }
   }
 
   tags = {
-    Environment = "Development"
-    Project     = "Example"
+    Environment = "dev"
   }
 }
 
