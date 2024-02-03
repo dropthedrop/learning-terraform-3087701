@@ -50,7 +50,7 @@ module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "blog"
-  vpc_id  = module.blog_sg.security_group_id.blog_vpc
+  vpc_id  = sg-0e9d022a4ebfee44c 
   subnets = [module.blog_vpc.public_subnets[0]]
 
   # Security Group
