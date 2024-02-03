@@ -50,7 +50,7 @@ module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "blog"
-  vpc_id  = sg-0e9d022a4ebfee44c 
+  vpc_id  = module.blog_vpc.vpc_id 
   subnets = [module.blog_vpc.public_subnets[0]]
 
   # Security Group
@@ -88,7 +88,7 @@ module "alb" {
 
   target_groups = {
     ex-instance = {
-      name_prefix      = "h1"
+      name_prefix      = "blog"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
