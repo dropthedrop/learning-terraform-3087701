@@ -16,18 +16,6 @@ default  = {
 }
 
 
-
-  default         {
-  name           = "dev"
-  network_prefix = "10.0"
-  }
-}
-
-
-  servers            = ["us-west-2a", "us-west-2b", "us-west-2c"]
-  public_subnets = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-
-
 variable "asg_min_size" {
   default = 1
 }
