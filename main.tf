@@ -49,7 +49,7 @@ module "blog_alb" {
       protocol    = "HTTP"
       port        = 80
       target_type = "instance"
-      create attachment = false
+      create_attachment = false
     }
   }
 }
