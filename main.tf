@@ -34,6 +34,7 @@ module "blog_vpc" {
 }
 
 
+
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
 
@@ -48,6 +49,7 @@ module "blog_alb" {
       protocol    = "HTTP"
       port        = 80
       target_type = "instance"
+      create attachment = false
     }
   }
 }
