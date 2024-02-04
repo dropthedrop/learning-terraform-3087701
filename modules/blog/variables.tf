@@ -15,7 +15,7 @@ default  = {
   owner  = "979382823631"
 }
 
-data "aws_vpc" "default" {
+data {"aws_vpc" "default"
   default = true
 }
 
