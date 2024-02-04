@@ -17,8 +17,8 @@ default  = {
 
 
 
-  default = {
-  name = "dev"
+  default        = {
+  name           = "dev"
   network_prefix = "10.0"
   }
 }
