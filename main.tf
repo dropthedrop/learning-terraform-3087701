@@ -21,7 +21,7 @@ data "aws_vpc" "default" {
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "dev"
+  name = "blog"
   cidr = "10.0.0.0/16"
 
   azs            = ["us-west-2a", "us-west-2b", "us-west-2c"]
